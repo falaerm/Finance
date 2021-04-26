@@ -1,0 +1,52 @@
+name: pyfinance
+channels:
+- defaults
+dependencies:
+- cycler
+- icu
+- jpeg
+- jupyter
+- jupyter_client
+- jupyter_console
+- jupyter_core
+- libpng
+- matplotlib
+- mkl
+- numpy
+- openpyxl
+- openssl
+- pandas
+- pandas-datareader
+- patsy
+- pip
+- pyparsing
+- pyqt
+- python
+- python-dateutil
+- pytz
+- qt
+- requests
+- requests-file
+- requests-ftp
+- scipy
+- setuptools
+- sip
+- six
+- statsmodels
+- tk
+- vs2015_runtime
+- wheel
+- xlrd
+- zlib
+- pip:
+  - certifi
+  - chardet
+  - idna
+  - inflection
+  - more-itertools
+  - mpl-finance
+  - mplfinance
+  - quandl
+  - sqlalchemy
+  - urllib3
+
