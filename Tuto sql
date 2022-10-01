@@ -1,0 +1,215 @@
+-- SQLite
+
+/*
+PRAGMA foreign_keys = ON;
+
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS recipes;
+
+CREATE TABLE IF NOT EXISTS categories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title VARCHAR(150) NOT NULL,
+    description TEXT
+);
+
+INSERT INTO categories (title)
+VALUES  
+    ('Plat'),
+    ('Dessert');
+
+CREATE TABLE recipes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    title VARCHAR(150) NOT NULL,
+    slug VARCHAR(50) NOT NULL UNIQUE,
+    content TEXT,
+    category_id INTEGER,
+    FOREIGN KEY (category_id) REFERENCES categories (id)
+);
+
+INSERT INTO recipes (title, slug, category_id)
+VALUES
+    ('Crème anglaise', 'crème-anglaise', 2),
+    ('Soupe', 'soupe', 1),
+    ('Salade de fruit', 'salade-de-fruit', 2);
+
+
+SELECT r.id, r.title, c.title AS category
+FROM recipes r
+INNER JOIN categories c ON r.category_id = c.id ;
+--faire de sjointures de tableau en ajoutant des clés étrangères
+*/
+
+/*
+CREATE TABLE recipes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title VARCHAR(150) NOT NULL,
+    content TEXT DEFAULT 'hello' NOT NULL,
+    slug VARCHAR(50) NOT NULL UNIQUE,
+    duration SMALLINT DEFAULT 10 NOT NULL,
+    online BOOLEAN,
+    created_at DATETIME
+);
+*/
+
+-- NOT NULL va servir pour éviter de laisser un champ libre dans les insertions
+
+-- pour créer une table pour une recette de cuisine
+
+-- CREATE UNIQUE INDEX idx_slug ON recipes (slug) 
+-- POUR CRéER DES DONNéES UNIQUES que l'on veut retrouver plus facilement
+-- Attention les index ont un poids
+
+-- UPDATE recipes SET slug = 'soupe2' WHERE id = 4
+-- pour modifier les slugs pour qu'ils soient différents
+
+-- DROP INDEX idx_slug;
+-- enlever des index
+
+-- PRAGMA index_list('recipes')
+--retrouver des éléments en index
+
+--EXPLAIN QUERY PLAN SELECT * FROM recipes WHERE id = 3
+--poursavoir ce que fait cette commande
+/*
+DROP TABLE recipes
+
+ALTER TABLE recipes DROP title;
+ALTER TABLE recipes ADD category VARCHAR(50);
+ALTER TABLE recipes RENAME TO blabla
+ALTER TABLE recipes RENAME category TO style
+
+*/
+--Apprendre à modifier un tableau
+
+
+/*
+INSERT INTO recipes (
+      title, 
+      slug,
+      content, 
+       duration, 
+       online, 
+       created_at
+    ) VALUES (
+        'Soupe6',
+        'soupe6',
+        'Contenu de test',
+        30,
+        FALSE,
+        164269734
+    ),
+    (
+        'Soupe8',
+        'soupe8',
+        'Contenu de test',
+        30,
+        FALSE,
+        164269734
+    );
+*/
+
+
+--Pour insérer des données dans ma table
+
+--DELETE FROM recipes WHERE id = 2;
+-- pour supprimer des données par rapport à l'id (plus simple)
+
+--SELECT * FROM recipes WHERE content IS NOT NULL;
+-- renvoirt les requêtes qui ne sont pas null
+
+
+/*
+INSERT INTO recipes (
+      title, 
+      slug,  
+       online, 
+       created_at
+    ) VALUES (
+        'Soupe1',
+        'soupe-2',
+        FALSE,
+        NULL
+    );
+*/
+
+-- pour insérer plusieurs lignes à la fois
+
+/*
+SELECT title, duration
+FROM recipes
+
+SELECT *
+FROM recipes
+
+
+SELECT *
+FROM recipes 
+WHERE duration <20
+
+SELECT *
+FROM recipes 
+WHERE duration <20
+
+SELECT *
+FROM recipes 
+WHERE title != 'Soupe'
+
+SELECT *
+FROM recipes 
+WHERE slug IN ('Soupe', 'Salade-de-fruit')
+
+
+
+SELECT *
+FROM recipes 
+WHERE slug ='Salade-de-fruit' AND duration < 20
+
+
+
+SELECT *
+FROM recipes 
+WHERE slug ='Salade-de-fruit' OR duration < 20
+
+
+
+SELECT *
+FROM recipes 
+WHERE slug ='Salade-de-fruit' OR (duration < 20 AND online = TRUE)
+--pour trouver les items avec salade de fruit ou les items avec une durée de -20 et fonction online TRUE
+
+SELECT *
+FROM recipes
+WHERE slug LIKE '%oup%'
+--pour trouver un mot entre deux avec les caractères oup
+*/
+
+
+
+
+/* Opération  boolean
+SELECT *
+FROM recipes 
+WHERE (slug ='Salade-de-fruit' 
+OR duration < 20) 
+AND online = TRUE
+
+TRUE AND TRUE = TRUE
+TRUE AND FALSE = FALSE
+FALSE AND FALSE = FALSE
+
+TRUE OR FALSE = TRUE
+FALSE OR TRUE = TRUE
+TRUE OR TRUE = TRUE
+FALSE OR FALSE  = FALSE
+*/
+/*
+DELETE FROM recipes WHERE title = 'Soupe3';
+--attention risque d'effacer toute la table si mal executé
+*/
+
+--SELECT* FROM recipes
+--pour vérifier
+
+--UPDATE recipes SET title = 'Soupe de légume' WHERE title = 'Soupe'
+--pour modifier une ou plusierus données en mème temps
+
